@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BusConnect – Smart Bus Stand | Real-Time Transit & Passenger Portal</title>
+  <meta name="description" content="Official modern public transport passenger portal for real-time bus tracking, schedules, bus stand amenities, platform allocations, and digital boarding.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans for high legibility -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Application Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       1. Top Accessibility & Utility Toolbar (Elderly & High Contrast Friendly)
+       ========================================================================== -->
+  <div class="accessibility-bar" role="region" aria-label="Accessibility options">
+    <div class="container">
+      <div class="utility-left">
+        <span><i class="fas fa-phone-alt"></i> 24/7 Terminal Toll-Free: <a href="tel:18004258888">1800-425-8888</a></span>
+        <span><i class="fas fa-wheelchair"></i> Priority Elder & Differently-Abled Assistance Desk</span>
+      </div>
+      <div class="utility-right">
+        <!-- Font Size Scaler for Seniors -->
+        <span style="font-size: 0.8rem; color: #CBD5E1;">Text Size:</span>
+        <div class="font-resizer" role="group" aria-label="Text size controls">
+          <button class="font-btn" data-scale="0.9" title="Small text">A-</button>
+          <button class="font-btn active" data-scale="1" title="Standard text">A</button>
+          <button class="font-btn" data-scale="1.15" title="Large text for easy reading">A+</button>
+        </div>
+        <!-- High Contrast / Theme Toggle -->
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Dark and Light Mode">
+          <i class="fas fa-moon"></i> Dark Mode
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       2. Main Navigation Header
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container">
+      <div class="nav-wrapper">
+        <a href="#home" class="brand-logo">
+          <div class="logo-icon">
+            <i class="fas fa-bus-alt"></i>
+          </div>
+          <div class="logo-text">
+            <span class="brand-title">Bus<span>Connect</span></span>
+            <span class="brand-tagline">Smart Bus Stand</span>
+          </div>
+        </a>
+
+        <!-- Desktop & Mobile Navigation Links -->
+        <nav>
+          <ul class="nav-links" id="mainNavLinks">
+            <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#bus-search" class="nav-link"><i class="fas fa-search"></i> Search Bus</a></li>
+            <li><a href="#live-status" class="nav-link"><i class="fas fa-broadcast-tower"></i> Live Status</a></li>
+            <li><a href="#my-journey" class="nav-link"><i class="fas fa-route"></i> My Journey</a></li>
+            <li><a href="#bus-stands" class="nav-link"><i class="fas fa-warehouse"></i> Bus Stands</a></li>
+            <li><a href="#timetable" class="nav-link"><i class="fas fa-calendar-alt"></i> Timetable</a></li>
+            <li><a href="#facilities" class="nav-link"><i class="fas fa-concierge-bell"></i> Facilities</a></li>
+            <li><a href="#announcements" class="nav-link"><i class="fas fa-bullhorn"></i> Alerts</a></li>
+            <li><a href="#contact" class="nav-link"><i class="fas fa-headset"></i> Help</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-cta">
+          <a href="#my-journey" class="btn btn-primary btn-sm">
+            <i class="fas fa-satellite-dish"></i> Track My Bus
+          </a>
+        </div>
+
+        <button class="mobile-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       3. Real-Time Alert Ticker Strip
+       ========================================================================== -->
+  <div class="alert-ticker-bar">
+    <div class="container">
+      <div class="ticker-inner">
+        <span class="ticker-badge"><i class="fas fa-bolt"></i> Live Notice</span>
+        <div class="ticker-content" id="topAlertTicker">
+          <strong>Special Holiday Services:</strong> 45 extra express buses deployed between Central Grand Terminal and Mysuru/Goa • <strong>Platform Shift:</strong> Bus BC-104 departing from Platform 07 • Emergency Help Desk is active 24/7.
+        </div>
+        <div class="ticker-action">
+          <a href="#announcements"><i class="fas fa-external-link-alt"></i> View All Alerts</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       4. Hero Section
+       ========================================================================== -->
+  <section id="home" class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Hero Text & Quick Action -->
+        <div class="hero-content">
+          <div class="hero-pill">
+            <i class="fas fa-shield-alt"></i> Next-Gen Smart Transit Management
+          </div>
+          <h1 class="hero-title">
+            Travel Smarter, <br><span>Travel Better.</span>
+          </h1>
+          <p class="hero-desc">
+            Your unified passenger gateway for real-time bus schedules, live GPS telemetry, platform bay allocations, and bus stand facilities across the transit network.
+          </p>
+
+          <!-- Buttons -->
+          <div class="hero-buttons">
+            <a href="#bus-search" class="btn btn-primary btn-lg">
+              <i class="fas fa-search"></i> Search Bus
+            </a>
+            <a href="#timetable" class="btn btn-outline-white btn-lg">
+              <i class="fas fa-table"></i> View Timetable
+            </a>
+          </div>
+
+          <!-- Quick Global Search Input -->
+          <div class="hero-quick-search">
+            <div class="hero-input-wrap">
+              <i class="fas fa-search"></i>
+              <input type="text" id="heroGlobalSearch" placeholder="Enter Bus Stand, Destination or Bus Number (e.g. BC-101, Mysuru)">
+            </div>
+            <button class="btn btn-primary" id="heroSearchBtn">
+              <i class="fas fa-arrow-right"></i> Find Bus
+            </button>
+          </div>
+        </div>
+
+        <!-- Hero Visual Dashboard Card -->
+        <div class="hero-visual-card">
+          <div class="visual-card-header">
+            <div class="visual-card-title">
+              <i class="fas fa-satellite-dish" style="color: #38BDF8;"></i> Central Terminal Live Feed
+            </div>
+            <div class="live-indicator">
+              <span class="radar-dot"></span> REALTIME GPS
+            </div>
+          </div>
+
+          <!-- Hero Metrics -->
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-num">120+</div>
+              <div class="stat-label">Daily Express Routes</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">98.4%</div>
+              <div class="stat-label">On-Time Reliability</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">28</div>
+              <div class="stat-label">Departure Bays</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">24/7</div>
+              <div class="stat-label">Passenger Assistance</div>
+            </div>
+          </div>
+
+          <!-- Next Immediate Departure Preview -->
+          <div class="card-sample-departure">
+            <div class="departure-info-left">
+              <span class="dep-bus-tag">BC-101</span>
+              <div class="dep-bus-details">
+                <h4>Rajdhani Super Express</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Central Terminal &rarr; Mysuru</p>
+              </div>
+            </div>
+            <div class="departure-info-right">
+              <div class="dep-time">06:30 AM</div>
+              <div class="dep-bay">Platform 04 (Bay A)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. Quick Access Cards Ribbon
+       ========================================================================== -->
+  <section class="quick-access-ribbon">
+    <div class="container">
+      <div class="quick-cards-grid">
+        <a href="#timetable" class="quick-card">
+          <div class="quick-icon blue">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <h3>Bus Timetable</h3>
+          <p>Browse full master schedules, route frequencies, and departure timings.</p>
+          <span class="quick-card-link">View Schedule <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+        <a href="#bus-search" class="quick-card">
+          <div class="quick-icon green">
+            <i class="fas fa-route"></i>
+          </div>
+          <h3>Routes & Search</h3>
+          <p>Find direct connections between terminals with live seat availability.</p>
+          <span class="quick-card-link">Explore Routes <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+        <a href="#bus-stands" class="quick-card">
+          <div class="quick-icon amber">
+            <i class="fas fa-warehouse"></i>
+          </div>
+          <h3>Bus Stands</h3>
+          <p>Discover major terminals, opening hours, nearby landmarks and amenities.</p>
+          <span class="quick-card-link">Locate Stands <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+        <a href="#facilities" class="quick-card">
+          <div class="quick-icon purple">
+            <i class="fas fa-hands-helping"></i>
+          </div>
+          <h3>Facilities & Help</h3>
+          <p>Waiting lounges, clean restrooms, drinking water, and emergency desks.</p>
+          <span class="quick-card-link">Check Services <i class="fas fa-arrow-right"></i></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. Bus Search Section
+       ========================================================================== -->
+  <section id="bus-search" class="section-spacer">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag"><i class="fas fa-search"></i> Direct Trip Planner</span>
+        <h2 class="section-title">Search & Reserve Buses</h2>
+        <p class="section-subtitle">Find buses across city terminals, compare departure times, check remaining seats, and track live status.</p>
+      </div>
+
+      <!-- Functional Search Form -->
+      <div class="search-card-wrapper">
+        <form id="busSearchForm">
+          <div class="search-form-grid">
+            <!-- Starting Bus Stand -->
+            <div class="form-group">
+              <label for="searchSourceStand" class="form-label"><i class="fas fa-map-marker-alt"></i> Starting Bus Stand</label>
+              <div class="input-with-icon">
+                <i class="fas fa-warehouse"></i>
+                <select id="searchSourceStand" class="form-control">
+                  <option value="">All Bus Stands</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Destination -->
+            <div class="form-group">
+              <label for="searchDestination" class="form-label"><i class="fas fa-location-arrow"></i> Destination</label>
+              <div class="input-with-icon">
+                <i class="fas fa-city"></i>
+                <input type="text" id="searchDestination" class="form-control" placeholder="City or Destination (e.g. Mysuru)">
+              </div>
+            </div>
+
+            <!-- Date -->
+            <div class="form-group">
+              <label for="searchDate" class="form-label"><i class="far fa-calendar-alt"></i> Journey Date</label>
+              <div class="input-with-icon">
+                <i class="far fa-calendar"></i>
+                <input type="date" id="searchDate" class="form-control">
+              </div>
+            </div>
+
+            <!-- Preferred Time Window -->
+            <div class="form-group">
+              <label for="searchTimeWindow" class="form-label"><i class="far fa-clock"></i> Preferred Time</label>
+              <div class="input-with-icon">
+                <i class="far fa-clock"></i>
+                <select id="searchTimeWindow" class="form-control">
+                  <option value="all">Any Time of Day</option>
+                  <option value="morning">Morning (05:00 AM - 12:00 PM)</option>
+                  <option value="afternoon">Afternoon (12:00 PM - 05:00 PM)</option>
+                  <option value="evening">Evening (05:00 PM - 09:00 PM)</option>
+                  <option value="night">Night (09:00 PM - 05:00 AM)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="search-btn-col">
+              <button type="submit" class="btn btn-primary" id="searchSubmitBtn">
+                <i class="fas fa-search"></i> Find Buses
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Popular Destinations Grid -->
+        <div class="popular-dest-container">
+          <div class="popular-dest-title">
+            <i class="fas fa-fire" style="color: #EF4444;"></i> Popular Passenger Destinations (Click to auto-fill)
+          </div>
+          <div class="popular-chips-grid" id="popularDestinationsGrid">
+            <!-- Dynamically injected from data.js -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Search Results Display Area -->
+      <div style="margin-top: 40px;">
+        <div class="search-results-header">
+          <h3 class="results-count-title" id="resultsCountTitle">Showing <span>Available Buses</span></h3>
+          
+          <!-- Category Filter Pills -->
+          <div class="filter-pills-bar">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted); margin-right: 4px;">Filter Bus Type:</span>
+            <button class="filter-pill search-type-pill active" data-type="all">All Fleet</button>
+            <button class="filter-pill search-type-pill" data-type="ac">AC Volvo</button>
+            <button class="filter-pill search-type-pill" data-type="sleeper">Sleeper Bed</button>
+            <button class="filter-pill search-type-pill" data-type="electric">Electric Shuttle</button>
+            <button class="filter-pill search-type-pill" data-type="express">Express</button>
+          </div>
+        </div>
+
+        <!-- Result Cards Stack -->
+        <div class="buses-cards-stack" id="searchResultsContainer">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       7. Live Bus Status Section (Departure & Arrival Dashboard)
+       ========================================================================== -->
+  <section id="live-status" class="section-spacer" style="background: var(--bg-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag"><i class="fas fa-broadcast-tower"></i> Real-Time Telemetry</span>
+        <h2 class="section-title">Live Bus Status & Departure Board</h2>
+        <p class="section-subtitle">Official airport-style digital departure board showing real-time bus statuses, bay allocations, delays, and voice announcements.</p>
+      </div>
+
+      <div class="live-board-container">
+        <!-- Live Board Header -->
+        <div class="board-header-strip">
+          <div class="board-header-left">
+            <div class="live-indicator">
+              <span class="radar-dot"></span> LIVE STATION FEED
+            </div>
+            <h3 style="font-size: 1.2rem; font-weight: 800;">Digital Departure & Arrival Concourse</h3>
+          </div>
+          
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div class="board-clock-badge" id="liveClock">
+              <i class="far fa-clock"></i> 00:00:00 IST
+            </div>
+            <button class="btn btn-outline-white btn-sm" id="refreshBoardBtn">
+              <i class="fas fa-sync-alt"></i> Refresh Board
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter & Search Controls Strip -->
+        <div class="board-controls-bar">
+          <div class="board-filter-tabs">
+            <button class="board-tab-btn active" data-filter="all">All Active Buses</button>
+            <button class="board-tab-btn" data-filter="ontime">On Time</button>
+            <button class="board-tab-btn" data-filter="delayed">Delayed</button>
+            <button class="board-tab-btn" data-filter="arriving">Arriving / Boarding</button>
+          </div>
+
+          <div class="board-search-input">
+            <input type="text" id="boardSearchInput" class="form-control" placeholder="Search by Bus No, Destination, or Platform...">
+          </div>
+        </div>
+
+        <!-- Digital Table -->
+        <div class="digital-board-table-wrap">
+          <table class="digital-board-table">
+            <thead>
+              <tr>
+                <th>Bus No & Fleet</th>
+                <th>Destination & Origin</th>
+                <th>Scheduled</th>
+                <th>Expected / ETA</th>
+                <th>Bay / Platform</th>
+                <th>Current Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="liveBoardTableBody">
+              <!-- Dynamically rendered -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       8. "My Journey" Visual Route Tracker (Extra Feature)
+       ========================================================================== -->
+  <section id="my-journey" class="section-spacer">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag"><i class="fas fa-route"></i> Interactive Trip Tracker</span>
+        <h2 class="section-title">My Journey – Live Bus Route Tracker</h2>
+        <p class="section-subtitle">Track any bus in real-time. View current milestones, intermediate stops, ETA countdown, platform details, and duty driver contact.</p>
+      </div>
+
+      <div class="my-journey-wrapper">
+        <!-- Search Bus Input -->
+        <form id="myJourneyForm" class="journey-search-box">
+          <div class="input-with-icon" style="flex: 1;">
+            <i class="fas fa-bus-alt"></i>
+            <input type="text" id="journeyBusNumber" class="form-control" placeholder="Enter Bus Number (e.g. BC-101, BC-104, BC-205, BC-312)">
+          </div>
+          <button type="submit" class="btn btn-primary" id="trackBusSubmitBtn">
+            <i class="fas fa-location-arrow"></i> Track My Bus
+          </button>
+        </form>
+
+        <!-- Quick Pick Bus Pills -->
+        <div class="journey-quick-pick">
+          <span>Quick Select:</span>
+          <button type="button" class="quick-bus-btn" data-bus="BC-101">BC-101 (Mysuru)</button>
+          <button type="button" class="quick-bus-btn" data-bus="BC-104">BC-104 (Hyderabad)</button>
+          <button type="button" class="quick-bus-btn" data-bus="BC-205">BC-205 (Airport Direct)</button>
+          <button type="button" class="quick-bus-btn" data-bus="BC-312">BC-312 (Pune Deluxe)</button>
+        </div>
+
+        <!-- Tracker Visualization Output -->
+        <div id="journeyTrackerDisplay" style="margin-top: 30px;">
+          <!-- Dynamically generated timeline stepper -->
+        </div>
+
+        <div id="journeyEmptyState" style="text-align: center; padding: 40px 20px; color: var(--text-muted); display: none;">
+          <i class="fas fa-compass" style="font-size: 3rem; margin-bottom: 12px; color: #94A3B8;"></i>
+          <h3>Ready to Track</h3>
+          <p>Enter any valid bus number above to visualize its active route timeline.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       9. Bus Stand Information Section
+       ========================================================================== -->
+  <section id="bus-stands" class="section-spacer" style="background: var(--bg-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag"><i class="fas fa-warehouse"></i> Terminal Directory</span>
+        <h2 class="section-title">Bus Stand Information & Terminals</h2>
+        <p class="section-subtitle">Complete directory of major regional and city terminals with operating hours, platform counts, landmarks, and amenities.</p>
+      </div>
+
+      <div class="stands-grid" id="busStandsGrid">
+        <!-- Dynamically rendered 6 Bus Stands -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       10. Timetable Section
+       ========================================================================== -->
+  <section id="timetable" class="section-spacer">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag"><i class="fas fa-calendar-alt"></i> Master Schedule</span>
+        <h2 class="section-title">Searchable Bus Timetable</h2>
+        <p class="section-subtitle">Search route schedules, frequency intervals, and platform bays. Easily export or print for your travel reference.</p>
+      </div>
+
+      <div class="timetable-wrapper">
+        <div class="timetable-filters-row">
+          <div class="timetable-search-box">
+            <div class="input-with-icon">
+              <i class="fas fa-search"></i>
+              <input type="text" id="timetableSearchInput" class="form-control" placeholder="Search by route, bus number, or stop name...">
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <select id="timetableCategoryFilter" class="form-control" style="width: auto; padding-left: 16px;">
+              <option value="all">All Service Categories</option>
+              <option value="inter-state">Inter-State Express</option>
+              <option value="airport">Airport Express</option>
+              <option value="city">City Feeder & Circular</option>
+            </select>
+
+            <button class="btn btn-secondary" id="printTimetableBtn">
+              <i class="fas fa-print"></i> Print Timetable
+            </button>
+          </div>
+        </div>
+
+        <div class="digital-board-table-wrap">
+          <table class="digital-board-table">
+            <thead>
+              <tr>
+                <th>Bus No & Name</th>
+                <th>Route (Origin &rarr; Destination)</th>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>Frequency</th>
+                <th>Platform</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="timetableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       11. Terminal Facilities Section
+       ========================================================================== -->
+  <section id="facilities" class="section-spacer" style="background: var(--bg-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag"><i class="fas fa-concierge-bell"></i> Passenger Comfort</span>
+        <h2 class="section-title">Bus Stand Facilities & Amenities</h2>
+        <p class="section-subtitle">Designed for comfort, hygiene, and universal accessibility. Here is what you will find at every certified terminal.</p>
+      </div>
+
+      <div class="facilities-grid" id="facilitiesGrid">
+        <!-- Dynamically rendered 10 facilities cards -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       12. Announcements Section
+       ========================================================================== -->
+  <section id="announcements" class="section-spacer">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag"><i class="fas fa-bullhorn"></i> Official Bulletins</span>
+        <h2 class="section-title">Important Passenger Announcements</h2>
+        <p class="section-subtitle">Stay notified regarding bus cancellations, route diversions, weather updates, and holiday specials.</p>
+      </div>
+
+      <div style="display: flex; justify-content: center; gap: 8px; margin-bottom: 30px; flex-wrap: wrap;">
+        <button class="filter-pill announcement-filter-pill active" data-type="all">All Broadcasts</button>
+        <button class="filter-pill announcement-filter-pill" data-type="delays">Delays & Disruptions</button>
+        <button class="filter-pill announcement-filter-pill" data-type="cancellations">Cancellations</button>
+        <button class="filter-pill announcement-filter-pill" data-type="general">General Notices</button>
+      </div>
+
+      <div class="announcements-grid" id="announcementsGrid">
+        <!-- Dynamically injected announcements -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       13. Contact, Emergency Help & FAQs Section
+       ========================================================================== -->
+  <section id="contact" class="section-spacer" style="background: var(--bg-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag"><i class="fas fa-headset"></i> 24/7 Support</span>
+        <h2 class="section-title">Help Desk, Emergency & FAQs</h2>
+        <p class="section-subtitle">Immediate assistance, security contacts, answers to common transit questions, and passenger feedback.</p>
+      </div>
+
+      <!-- Quick Emergency Dial Cards -->
+      <div class="emergency-cards-grid">
+        <a href="tel:112" class="emergency-dial-card">
+          <div class="dial-icon"><i class="fas fa-shield-alt"></i></div>
+          <div class="dial-info">
+            <strong>Police Emergency SOS</strong>
+            <span class="dial-number">Dial 112</span>
+          </div>
+        </a>
+
+        <a href="tel:1091" class="emergency-dial-card">
+          <div class="dial-icon"><i class="fas fa-female"></i></div>
+          <div class="dial-info">
+            <strong>Women Passenger Helpline</strong>
+            <span class="dial-number">Dial 1091</span>
+          </div>
+        </a>
+
+        <a href="tel:108" class="emergency-dial-card">
+          <div class="dial-icon"><i class="fas fa-ambulance"></i></div>
+          <div class="dial-info">
+            <strong>Medical & Ambulance Desk</strong>
+            <span class="dial-number">Dial 108</span>
+          </div>
+        </a>
+
+        <a href="tel:18004258888" class="emergency-dial-card">
+          <div class="dial-icon"><i class="fas fa-headset"></i></div>
+          <div class="dial-info">
+            <strong>Central Terminal Inquiries</strong>
+            <span class="dial-number">1800-425-8888</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Grid: Left FAQ Accordion / Right Feedback Form -->
+      <div class="contact-layout-grid">
+        <!-- FAQ Accordion -->
+        <div>
+          <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 8px;">Frequently Asked Questions</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;">Quick answers to ticketing, luggage, refunds, and passenger guidelines.</p>
+          <div class="faq-accordion" id="faqAccordionContainer">
+            <!-- Dynamically populated from data.js -->
+          </div>
+        </div>
+
+        <!-- Passenger Feedback Form -->
+        <div class="feedback-card">
+          <h3>Passenger Feedback & Inquiry Desk</h3>
+          <p>Have an inquiry, compliment, or station complaint? Send your request directly to station management.</p>
+          
+          <form id="passengerFeedbackForm">
+            <div class="form-group" style="margin-bottom: 14px;">
+              <label for="feedbackName" class="form-label"><i class="fas fa-user"></i> Full Name *</label>
+              <input type="text" id="feedbackName" class="form-control" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 14px;">
+              <label for="feedbackPhone" class="form-label"><i class="fas fa-phone"></i> Mobile Number</label>
+              <input type="tel" id="feedbackPhone" class="form-control" placeholder="+91 98765 43210">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 14px;">
+              <label for="feedbackCategory" class="form-label"><i class="fas fa-tag"></i> Category</label>
+              <select id="feedbackCategory" class="form-control">
+                <option value="General Inquiry">General Transit Inquiry</option>
+                <option value="Lost Property">Lost & Found Property</option>
+                <option value="Terminal Cleanliness">Terminal Cleanliness / Restroom</option>
+                <option value="Bus Timing Issue">Bus Timing / Delay Feedback</option>
+                <option value="Staff Appreciation">Staff / Crew Appreciation</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+              <label for="feedbackComments" class="form-label"><i class="fas fa-comment-alt"></i> Message / Details *</label>
+              <textarea id="feedbackComments" class="form-control" rows="4" placeholder="Please describe your experience or question..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              <i class="fas fa-paper-plane"></i> Submit Feedback
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       14. Site Footer
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3><i class="fas fa-bus-alt" style="color: #38BDF8;"></i> BusConnect – Smart Bus Stand</h3>
+          <p>
+            Dedicated to modernizing public bus transport through transparent real-time telemetry, passenger safety, accessible infrastructure, and intelligent bus stand operations.
+          </p>
+          <div style="font-size: 0.82rem; color: #94A3B8;">
+            <i class="fas fa-laptop-code" style="color: #38BDF8;"></i> College Mini-Project Demonstration Model
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-links-title">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="#bus-search">Search Buses</a></li>
+            <li><a href="#live-status">Live Board</a></li>
+            <li><a href="#my-journey">Track My Journey</a></li>
+            <li><a href="#timetable">Full Timetable</a></li>
+            <li><a href="#bus-stands">Bus Stands Directory</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-links-title">Passenger Amenities</h4>
+          <ul class="footer-links-list">
+            <li><a href="#facilities">Waiting Lounges</a></li>
+            <li><a href="#facilities">RO Drinking Water</a></li>
+            <li><a href="#facilities">Smart Restrooms</a></li>
+            <li><a href="#facilities">Accessibility Ramps</a></li>
+            <li><a href="#announcements">Passenger Notices</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-emergency-box">
+            <h4><i class="fas fa-shield-alt"></i> Emergency Assistance</h4>
+            <p>Immediate passenger safety and medical response is available across all platforms round-the-clock.</p>
+            <div style="font-size: 1.15rem; font-weight: 800; color: #FFFFFF; font-family: monospace;">
+              Toll-Free: 1800-425-8888
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-copy">
+          &copy; 2026 BusConnect Transit Authority. Built with HTML5, CSS3 & JavaScript.
+        </div>
+        <div class="footer-bottom-links">
+          <a href="#home">Back to Top <i class="fas fa-arrow-up"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       15. Modals & Dialogs
+       ========================================================================== -->
+
+  <!-- Stand Details Modal -->
+  <div class="modal-overlay" id="standModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="standModalTitle"><i class="fas fa-bus-alt"></i> Terminal Overview</h3>
+        <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" id="standModalBody">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Seat Selection & Boarding Pass Generator Modal -->
+  <div class="modal-overlay" id="seatBookingModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="seatModalBusTitle"><i class="fas fa-ticket-alt"></i> Select Seats & Boarding Pass</h3>
+        <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="ticketBookingFormArea">
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 14px;">
+            Select your preferred seat on the layout below and generate a real-time digital boarding pass.
+          </p>
+
+          <!-- Seat Map Legend -->
+          <div class="seat-legend">
+            <div class="legend-item"><div class="seat-sample available"></div> Available</div>
+            <div class="legend-item"><div class="seat-sample selected"></div> Selected</div>
+            <div class="legend-item"><div class="seat-sample booked"></div> Booked</div>
+          </div>
+
+          <!-- Interactive Seat Layout -->
+          <div class="seat-map-container">
+            <div style="text-align: center; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase;">
+              <i class="fas fa-steering-wheel"></i> Front of Bus (Driver Cabin)
+            </div>
+            <div class="bus-cabin-grid" id="seatCabinLayout">
+              <!-- Dynamically generated seats -->
+            </div>
+            <div style="text-align: center; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); margin-top: 12px; text-transform: uppercase;">
+              Rear of Bus
+            </div>
+          </div>
+
+          <!-- Fare & Selection Summary -->
+          <div id="modalSelectedFareText" style="font-size: 0.95rem; margin-bottom: 16px; padding: 10px 14px; background: var(--bg-subtle); border-radius: var(--radius-md);">
+            Selected Seats: None | Total Fare: ₹ 0
+          </div>
+
+          <!-- Passenger Info -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+            <div class="form-group">
+              <label for="passengerNameInput" class="form-label">Passenger Name *</label>
+              <input type="text" id="passengerNameInput" class="form-control" placeholder="e.g. Ramesh Kumar" value="Ramesh Kumar">
+            </div>
+            <div class="form-group">
+              <label for="passengerPhoneInput" class="form-label">Mobile Number</label>
+              <input type="tel" id="passengerPhoneInput" class="form-control" placeholder="+91 98450 12345" value="+91 98450 12345">
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 10px;">
+            <button class="btn btn-secondary" onclick="closeAllModals()">Cancel</button>
+            <button class="btn btn-primary" onclick="generateDemoBoardingPass()">
+              <i class="fas fa-qrcode"></i> Generate E-Boarding Pass
+            </button>
+          </div>
+        </div>
+
+        <!-- Generated Ticket Preview -->
+        <div id="ticketPreviewResult" style="display: none;">
+          <!-- Dynamically injected boarding pass -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
